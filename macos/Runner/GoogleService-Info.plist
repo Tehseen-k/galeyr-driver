@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>217707436148-9fk3n5nv321g0okt0quipn2ci4287q2u.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.217707436148-9fk3n5nv321g0okt0quipn2ci4287q2u</string>
+	<key>API_KEY</key>
+	<string>AIzaSyA3iew1yYV3TsRJJNKAorSRTjyjUwHqIyg</string>
+	<key>GCM_SENDER_ID</key>
+	<string>217707436148</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.jet.app</string>
+	<key>PROJECT_ID</key>
+	<string>jetride-bc5ae</string>
+	<key>STORAGE_BUCKET</key>
+	<string>jetride-bc5ae.firebasestorage.app</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:217707436148:ios:284ccd716ae6b564a2d921</string>
+</dict>
+</plist>
