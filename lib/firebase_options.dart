@@ -52,30 +52,28 @@ class DefaultFirebaseOptions {
 
   static const FirebaseOptions android = FirebaseOptions(
     apiKey: 'AIzaSyCWRHNuDC6dDCqs2Io0fbNZ4RLvWcTWw_g',
-    appId: '1:217707436148:android:9a28715e4a1ab693a2d921',
+    appId: '1:217707436148:android:926e8e50fef8b726a2d921',
     messagingSenderId: '217707436148',
     projectId: 'jetride-bc5ae',
     storageBucket: 'jetride-bc5ae.firebasestorage.app',
   );
-
   static const FirebaseOptions ios = FirebaseOptions(
     apiKey: 'AIzaSyA3iew1yYV3TsRJJNKAorSRTjyjUwHqIyg',
-    appId: '1:217707436148:ios:ab33fcbd3ffa56cfa2d921',
+    appId: '1:217707436148:ios:37a5c1dea49ce8b5a2d921',
     messagingSenderId: '217707436148',
     projectId: 'jetride-bc5ae',
     storageBucket: 'jetride-bc5ae.firebasestorage.app',
-    iosClientId: '217707436148-tjlgdd8don50fcjkhsk6io7nasru801h.apps.googleusercontent.com',
-    iosBundleId: 'com.jetride.app',
+    iosClientId: '217707436148-6pn91lffeo2l8jsttrb4k233ol31uu5b.apps.googleusercontent.com',
+    iosBundleId: 'com.galeyr.driver',
   );
-
   static const FirebaseOptions macos = FirebaseOptions(
     apiKey: 'AIzaSyA3iew1yYV3TsRJJNKAorSRTjyjUwHqIyg',
-    appId: '1:217707436148:ios:284ccd716ae6b564a2d921',
+    appId: '1:217707436148:ios:37a5c1dea49ce8b5a2d921',
     messagingSenderId: '217707436148',
     projectId: 'jetride-bc5ae',
     storageBucket: 'jetride-bc5ae.firebasestorage.app',
-    iosClientId: '217707436148-9fk3n5nv321g0okt0quipn2ci4287q2u.apps.googleusercontent.com',
-    iosBundleId: 'com.jet.app',
+    iosClientId: '217707436148-6pn91lffeo2l8jsttrb4k233ol31uu5b.apps.googleusercontent.com',
+    iosBundleId: 'com.galeyr.driver',
   );
 
   static const FirebaseOptions windows = FirebaseOptions(

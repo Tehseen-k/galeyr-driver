@@ -3,7 +3,7 @@ import 'package:camera/camera.dart';
 import 'package:flutter_image_compress/flutter_image_compress.dart';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
-import 'package:google_mlkit_face_detection/google_mlkit_face_detection.dart';
+//import 'package:google_mlkit_face_detection/google_mlkit_face_detection.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:ride_sharing_user_app/data/api_checker.dart';
 import 'package:ride_sharing_user_app/features/face_verification/domain/services/face_verification_service_interface.dart';
@@ -24,13 +24,13 @@ class FaceVerificationController extends GetxController implements GetxService{
   int _eyeBlink = 0;
   bool _isSuccess = true;
   double zoomLevel = 0.0, minZoomLevel = 0.0, maxZoomLevel = 0.0;
-  final FaceDetector _faceDetector = FaceDetector(
-    options: FaceDetectorOptions(
-      enableContours: true,
-      enableLandmarks: true,
-      enableClassification: true,
-    ),
-  );
+  // final FaceDetector _faceDetector = FaceDetector(
+  //   options: FaceDetectorOptions(
+  //     enableContours: true,
+  //     enableLandmarks: true,
+  //     enableClassification: true,
+  //   ),
+  // );
 
   File? _imageFile;
   XFile? compressXFile;
@@ -73,128 +73,128 @@ class FaceVerificationController extends GetxController implements GetxService{
   }) async {
 
     final sensorOrientation = camera.sensorOrientation;
-    InputImageRotation? rotation;
+  //  InputImageRotation? rotation;
     if (Platform.isIOS) {
-      rotation = InputImageRotationValue.fromRawValue(sensorOrientation);
-    } else if (Platform.isAndroid) {
-      var rotationCompensation = 0;
-      if (camera.lensDirection == CameraLensDirection.front) {
-        // front-facing
-        rotationCompensation = (sensorOrientation + rotationCompensation) % 360;
-      } else {
-        // back-facing
-        rotationCompensation = (sensorOrientation - rotationCompensation + 360) % 360;
-      }
-      rotation = InputImageRotationValue.fromRawValue(rotationCompensation);
+    //  rotation = InputImageRotationValue.fromRawValue(sensorOrientation);
+    // } else if (Platform.isAndroid) {
+    //   var rotationCompensation = 0;
+    //   if (camera.lensDirection == CameraLensDirection.front) {
+    //     // front-facing
+    //     rotationCompensation = (sensorOrientation + rotationCompensation) % 360;
+    //   } else {
+    //     // back-facing
+    //     rotationCompensation = (sensorOrientation - rotationCompensation + 360) % 360;
+    //   }
+ //     rotation = InputImageRotationValue.fromRawValue(rotationCompensation);
     }
-    if (rotation == null) return;
+    //if (rotation == null) return;
 
-    final format = InputImageFormatValue.fromRawValue(image.format.raw);
+    // final format = InputImageFormatValue.fromRawValue(image.format.raw);
 
-    if (format == null ||
-        (Platform.isAndroid && format != InputImageFormat.nv21) ||
-        (Platform.isIOS && format != InputImageFormat.bgra8888)) {
-      return;
-    }
+    // if (format == null ||
+    //     (Platform.isAndroid && format != InputImageFormat.nv21) ||
+    //     (Platform.isIOS && format != InputImageFormat.bgra8888)) {
+    //   return;
+    // }
 
-    // since format is constraint to nv21 or bgra8888, both only have one plane
-    if (image.planes.length != 1) return;
-    final plane = image.planes.first;
+    // // since format is constraint to nv21 or bgra8888, both only have one plane
+    // if (image.planes.length != 1) return;
+    // final plane = image.planes.first;
 
-    // compose InputImage using bytes
-    final inputImage =  InputImage.fromBytes(
-      bytes: plane.bytes,
-      metadata: InputImageMetadata(
-        size: Size(image.width.toDouble(), image.height.toDouble()),
-        rotation: rotation, // used only in Android
-        format: format, // used only in iOS
-        bytesPerRow: plane.bytesPerRow, // used only in iOS
-      ),
-    );
+    // // compose InputImage using bytes
+    // final inputImage =  InputImage.fromBytes(
+    //   bytes: plane.bytes,
+    //   metadata: InputImageMetadata(
+    //     size: Size(image.width.toDouble(), image.height.toDouble()),
+    //     rotation: rotation, // used only in Android
+    //     format: format, // used only in iOS
+    //     bytesPerRow: plane.bytesPerRow, // used only in iOS
+    //   ),
+    // );
 
-    processImage(inputImage);
+    // processImage(inputImage);
 
   }
 
-  Future<void> processImage(InputImage inputImage) async {
+  // Future<void> processImage(InputImage inputImage) async {
 
-    if (_isBusy) return;
-    _isBusy = true;
+  //   if (_isBusy) return;
+  //   _isBusy = true;
 
-    try{
-      final List<Face> faces = await _faceDetector.processImage(inputImage);
+  //   try{
+  //     final List<Face> faces = await _faceDetector.processImage(inputImage);
 
-      if(faces.length == 1) {
-        if((faces[0].rightEyeOpenProbability ?? 1) < 0.1 && (faces[0].leftEyeOpenProbability ?? 1) < 0.1 && _eyeBlink < 3) {
-          _eyeBlink++;
-        }
-      }
-    }catch(e) {
-      debugPrint('error ===> $e');
-    }
+  //     if(faces.length == 1) {
+  //       if((faces[0].rightEyeOpenProbability ?? 1) < 0.1 && (faces[0].leftEyeOpenProbability ?? 1) < 0.1 && _eyeBlink < 3) {
+  //         _eyeBlink++;
+  //       }
+  //     }
+  //   }catch(e) {
+  //     debugPrint('error ===> $e');
+  //   }
 
-    if(_eyeBlink == 3) {
-      try{
-        await controller?.stopImageStream().then((value)async {
-          _faceDetector.close();
+  //   if(_eyeBlink == 3) {
+  //     try{
+  //       await controller?.stopImageStream().then((value)async {
+  //         _faceDetector.close();
 
-          final XFile file =  await controller!.takePicture();
-          compressXFile = await compressFile(File(file.path));
-          _imageFile =  File(compressXFile!.path);
-        });
-      }catch(e){
-        debugPrint('error is $e');
-      }
-      if(_imageFile != null) {
-        final inputImage = InputImage.fromFilePath(_imageFile!.path);
-        processPicture(inputImage);
-      }
-    }
-    update();
-    _isBusy = false;
-  }
+  //         final XFile file =  await controller!.takePicture();
+  //         compressXFile = await compressFile(File(file.path));
+  //         _imageFile =  File(compressXFile!.path);
+  //       });
+  //     }catch(e){
+  //       debugPrint('error is $e');
+  //     }
+  //     if(_imageFile != null) {
+  //       final inputImage = InputImage.fromFilePath(_imageFile!.path);
+  //       processPicture(inputImage);
+  //     }
+  //   }
+  //   update();
+  //   _isBusy = false;
+  // }
 
-  Future<void> processPicture(InputImage inputImage) async {
+  // Future<void> processPicture(InputImage inputImage) async {
 
-    bool hasEyeOpen = false;
-    final faces = await _faceDetector.processImage(inputImage);
-    try{
-      if(faces.length == 1) {
-        if(faces[0].rightEyeOpenProbability != null && faces[0].leftEyeOpenProbability != null) {
-          if(faces[0].rightEyeOpenProbability! > 0.2 && faces[0].leftEyeOpenProbability! > 0.2){
-            hasEyeOpen = true;
-          }
-        }
-      }
-    }catch(e){
-      debugPrint('error ---> $e');
-    }
+  //   bool hasEyeOpen = false;
+  //   final faces = await _faceDetector.processImage(inputImage);
+  //   try{
+  //     if(faces.length == 1) {
+  //       if(faces[0].rightEyeOpenProbability != null && faces[0].leftEyeOpenProbability != null) {
+  //         if(faces[0].rightEyeOpenProbability! > 0.2 && faces[0].leftEyeOpenProbability! > 0.2){
+  //           hasEyeOpen = true;
+  //         }
+  //       }
+  //     }
+  //   }catch(e){
+  //     debugPrint('error ---> $e');
+  //   }
 
-    if(hasEyeOpen || GetPlatform.isIOS) {
-      Future.delayed(const Duration(seconds: 1)).then((value) async {
-        await _faceDetector.close();
-        Get.dialog(
-            const FaceVerifyingDialog(),
-            barrierDismissible: false
-        );
+  //   if(hasEyeOpen || GetPlatform.isIOS) {
+  //     Future.delayed(const Duration(seconds: 1)).then((value) async {
+  //       await _faceDetector.close();
+  //       Get.dialog(
+  //           const FaceVerifyingDialog(),
+  //           barrierDismissible: false
+  //       );
 
-        Response response = await faceVerificationServiceInterface.verifyDriverIdentity(compressXFile);
-        stopLiveFeed();
-        Get.find<ProfileController>().getProfileInfo();
-        Get.offAll(()=> FaceVerificationResultScreen(
-          isSuccess: response.statusCode == 200,
-          message: response.body['message'],
-        ));
+  //       Response response = await faceVerificationServiceInterface.verifyDriverIdentity(compressXFile);
+  //       stopLiveFeed();
+  //       Get.find<ProfileController>().getProfileInfo();
+  //       Get.offAll(()=> FaceVerificationResultScreen(
+  //         isSuccess: response.statusCode == 200,
+  //         message: response.body['message'],
+  //       ));
 
-      });
+  //     });
 
 
-    }else{
-      _isSuccess = false;
-      update();
-    }
+  //   }else{
+  //     _isSuccess = false;
+  //     update();
+  //   }
 
-  }
+  // }
 
   Future<XFile> compressFile(File file) async {
     final filePath = file.absolute.path;

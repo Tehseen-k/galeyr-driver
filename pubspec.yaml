@@ -70,7 +70,7 @@ dependencies:
   flutter_downloader: ^1.12.0
   square_progress_indicator: ^0.0.8
   firebase_crashlytics: ^5.2.0
-  google_mlkit_face_detection: ^0.13.2
+  #google_mlkit_face_detection: ^0.13.2
   camera: ^0.12.0+1
   flutter_image_compress: ^2.4.0
   loading_overlay_pro: ^2.1.1
@@ -96,9 +96,9 @@ dev_dependencies:
 flutter_launcher_icons:
   android: true
   ios: true
-  image_path: "assets/image/jettappicon.png"
-  adaptive_icon_background: "#2E9B3A"
-  adaptive_icon_foreground: "assets/image/jettappicon.png"
+  image_path: "assets/image/userlogoapp.png"
+  adaptive_icon_background: "#000000"
+  adaptive_icon_foreground: "assets/image/userlogoapp.png"
 
 flutter:
   uses-material-design: true

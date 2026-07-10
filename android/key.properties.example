@@ -1,7 +1,7 @@
-# Copy this file to android/key.properties and fill in your values.
-# NEVER commit key.properties or your .jks/.keystore file to git.
+# Copy to android/key.properties after generating the keystore.
+# NEVER commit key.properties or *.jks to git.
 
 storePassword=YOUR_KEYSTORE_PASSWORD
 keyPassword=YOUR_KEY_PASSWORD
-keyAlias=galeyralias
-storeFile=../galeyrdriver.jks
+keyAlias=galeyr_driver
+storeFile=../galeyr-driver-release.jks

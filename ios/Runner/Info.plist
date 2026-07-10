@@ -29,34 +29,35 @@
 			<string>Editor</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>com.googleusercontent.apps.76471554747-a5hekk6p2o8n3jf3pbv741f11m78e32u</string>
+				<string>com.googleusercontent.apps.217707436148-6pn91lffeo2l8jsttrb4k233ol31uu5b</string>
 			</array>
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
 	<string>$(FLUTTER_BUILD_NUMBER)</string>
+	<key>ITSAppUsesNonExemptEncryption</key>
+	<false/>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSCameraUsageDescription</key>
-	<string>This app need camera access for taking photo for user profile picture.</string>
-	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-	<string>This app needs access to location to manage delivery address when add a new address.</string>
-	<key>NSLocationAlwaysUsageDescription</key>
-	<string>This app needs access to location to manage delivery address when add a new address.</string>
-	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>This app needs access to location to manage delivery address when add a new address.</string>
-	<key>NSPhotoLibraryUsageDescription</key>
-	<string>This app need photo gallery access for taking photo for user profile picture.</string>
+	<string>GALEYR Driver needs camera access for profile photos, identity verification, and parcel proof images.</string>
 	<key>NSFaceIDUsageDescription</key>
-	<string>This app requires Face ID for secure authentication.</string>
-	<key>NSPrivacyAccessedAPITypes</key>
-	<string>This app need location permission for tracking driver start to destination trip.</string>
+	<string>GALEYR Driver uses Face ID for secure and convenient login.</string>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>GALEYR Driver uses your location in the background during active trips so passengers can track your arrival and JetRide can monitor trip progress and safety.</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>GALEYR Driver uses your location in the background during active trips so passengers can track your arrival and JetRide can monitor trip progress and safety.</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>GALEYR Driver uses your location to show your position on the map, receive nearby ride requests, and navigate during trips.</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>GALEYR Driver needs photo library access to upload profile pictures, documents, and parcel proof images.</string>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>remote-notification</string>
 		<string>fetch</string>
+		<string>location</string>
 	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>

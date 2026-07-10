@@ -16,7 +16,7 @@ if (keystorePropertiesFile.exists()) {
 }
 
 android {
-    namespace = "com.jetride.app"
+    namespace = "com.galeyr.driver"
     compileSdk = 36
 
     compileOptions {
@@ -29,7 +29,7 @@ android {
 
     defaultConfig {
         multiDexEnabled = true
-        applicationId = "com.jetride.app"
+        applicationId = "com.galeyr.driver"
         minSdk = flutter.minSdkVersion
         targetSdk = 36
         versionCode = flutter.versionCode

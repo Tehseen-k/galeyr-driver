@@ -3,9 +3,9 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>217707436148-9fk3n5nv321g0okt0quipn2ci4287q2u.apps.googleusercontent.com</string>
+	<string>217707436148-6pn91lffeo2l8jsttrb4k233ol31uu5b.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.217707436148-9fk3n5nv321g0okt0quipn2ci4287q2u</string>
+	<string>com.googleusercontent.apps.217707436148-6pn91lffeo2l8jsttrb4k233ol31uu5b</string>
 	<key>API_KEY</key>
 	<string>AIzaSyA3iew1yYV3TsRJJNKAorSRTjyjUwHqIyg</string>
 	<key>GCM_SENDER_ID</key>
@@ -13,7 +13,7 @@
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.jet.app</string>
+	<string>com.galeyr.driver</string>
 	<key>PROJECT_ID</key>
 	<string>jetride-bc5ae</string>
 	<key>STORAGE_BUCKET</key>
@@ -29,6 +29,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:217707436148:ios:284ccd716ae6b564a2d921</string>
+	<string>1:217707436148:ios:37a5c1dea49ce8b5a2d921</string>
 </dict>
 </plist>

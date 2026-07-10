@@ -1,4 +1,4 @@
-package com.jetride.app
+package com.galeyr.driver
 
 import io.flutter.embedding.android.FlutterFragmentActivity
 
