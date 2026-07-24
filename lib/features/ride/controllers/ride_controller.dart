@@ -193,7 +193,32 @@ class RideController extends GetxController implements GetxService{
 
       accepting = true;
       update();
-    Response response = await rideServiceInterface.tripAcceptOrReject(tripId, action);
+    Response response;
+    try {
+      response = await rideServiceInterface.tripAcceptOrReject(tripId, action);
+    } catch (e) {
+      accepting = false;
+      onPressedTripId = null;
+      update();
+      return Response(
+        statusCode: 0,
+        statusText: e.toString(),
+        body: {'message': e.toString(), 'response_code': 'request_failed'},
+      );
+    }
+
+    // Server often finishes accept + Pusher before HTTP returns. On timeout, verify trip status.
+    if (action == 'accepted' && (response.statusCode == 0 || response.statusCode == 1)) {
+      final verified = await _verifyTripAcceptedAfterTimeout(tripId);
+      if (verified) {
+        response = const Response(
+          statusCode: 200,
+          statusText: 'OK',
+          body: {'response_code': 'default_200', 'message': 'Successfully loaded'},
+        );
+      }
+    }
+
     if (response.statusCode == 200) {
 
       accepting = false;
@@ -250,6 +275,21 @@ class RideController extends GetxController implements GetxService{
     onPressedTripId = null;
     update();
     return response;
+  }
+
+  Future<bool> _verifyTripAcceptedAfterTimeout(String tripId) async {
+    try {
+      final details = await getRideDetails(tripId);
+      if (details.statusCode != 200 || tripDetail == null) return false;
+      final status = (tripDetail!.currentStatus ?? '').toLowerCase();
+      // pending/cancelled mean accept did not stick; anything else means trip moved forward
+      if (status.isEmpty || status == 'pending' || status == 'cancelled' || status == 'rejected') {
+        return false;
+      }
+      return true;
+    } catch (_) {
+      return false;
+    }
   }
 
 

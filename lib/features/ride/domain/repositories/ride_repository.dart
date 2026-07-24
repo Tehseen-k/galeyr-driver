@@ -45,10 +45,15 @@ class RideRepository implements RideRepositoryInterface{
 
   @override
   Future<Response> tripAcceptOrReject(String tripId, String action) async {
-    return await apiClient.postData(AppConstants.tripAcceptOrReject,{
-      "trip_request_id": tripId,
-      "action" : action
-    });
+    // Accept can take longer on the server (notifications/pusher); avoid false timeouts.
+    return await apiClient.postData(
+      AppConstants.tripAcceptOrReject,
+      {
+        "trip_request_id": tripId,
+        "action" : action
+      },
+      timeout: 90,
+    );
   }
 
   @override
