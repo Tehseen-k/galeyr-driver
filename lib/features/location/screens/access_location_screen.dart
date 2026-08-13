@@ -62,7 +62,7 @@ class BottomButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(child: SizedBox(width: MediaQuery.of(context).size.width-40 ,
         child: Column(children: [
-          ButtonWidget(buttonText: 'use_current_location'.tr,
+          ButtonWidget(buttonText: 'continue'.tr,
             fontSize: Dimensions.fontSizeSmall,
             onPressed: () async {
               Get.find<LocationController>().checkPermission().then((permission){
@@ -82,7 +82,7 @@ class BottomButton extends StatelessWidget {
                }
               });
 
-            }, icon: Icons.my_location,
+            },
           ),
           const SizedBox(height: Dimensions.paddingSizeSmall),
         ])));

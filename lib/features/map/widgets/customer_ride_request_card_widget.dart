@@ -234,26 +234,6 @@ class CustomerRideRequestCardWidget extends StatelessWidget {
 
                             if(responseCode == 'maximum_amount_to_hold_cash_exceeds'){
                               _customSnackBar();
-                            }else if(responseCode == 'connection_failed' || value.statusCode == 0 || value.statusCode == 1){
-                              // Trip may already be accepted (customer got Pusher). Check ongoing trips.
-                              Get.find<RideController>().ongoingTripList().then((ongoing) {
-                                final hasTrip = (Get.find<RideController>().ongoingTrip ?? [])
-                                    .any((t) => t.id == rideRequest.id);
-                                if(hasTrip){
-                                  Get.find<AuthController>().saveRideCreatedTime();
-                                  if(rideRequest.type == AppConstants.scheduleRequest){
-                                    Get.find<RiderMapController>().setRideCurrentState(RideState.accepted);
-                                  }else{
-                                    Get.find<RiderMapController>().setRideCurrentState(RideState.outForPickup);
-                                  }
-                                  Get.find<RideController>().updateRoute(false, notify: true);
-                                  Get.find<RideController>().remainingDistance(rideRequest.id!,mapBound: true);
-                                  Get.find<RideController>().getPendingRideRequestList(1);
-                                  Get.to(()=> const MapScreen());
-                                }else{
-                                  Get.dialog(TripAcceptWarningDialogWidget(errorText: message));
-                                }
-                              });
                             }else{
                               Get.dialog(TripAcceptWarningDialogWidget(errorText: message));
                             }
@@ -445,36 +425,6 @@ class CustomerRideRequestCardWidget extends StatelessWidget {
 
                               if(responseCode == 'maximum_amount_to_hold_cash_exceeds'){
                                 _customSnackBar();
-                              }else if(responseCode == 'connection_failed' || value.statusCode == 0 || value.statusCode == 1){
-                                Get.find<RideController>().ongoingTripList().then((ongoing) {
-                                  final hasTrip = (Get.find<RideController>().ongoingTrip ?? [])
-                                      .any((t) => t.id == rideRequest.id);
-                                  if(hasTrip){
-                                    Get.find<AuthController>().saveRideCreatedTime();
-                                    if(fromList){
-                                      Get.find<RideController>().getRideDetails(rideRequest.id!).then((details) {
-                                        if(details.statusCode == 200){
-                                          if(rideRequest.type == AppConstants.scheduleRequest){
-                                            Get.find<RiderMapController>().setRideCurrentState(RideState.accepted);
-                                          }else{
-                                            Get.find<RiderMapController>().setRideCurrentState(RideState.outForPickup);
-                                          }
-                                          Get.find<RideController>().updateRoute(false, notify: true);
-                                          Get.to(()=> const MapScreen());
-                                        }
-                                      });
-                                    }else{
-                                      if(rideRequest.type == AppConstants.scheduleRequest){
-                                        Get.find<RiderMapController>().setRideCurrentState(RideState.accepted);
-                                      }else{
-                                        Get.find<RiderMapController>().setRideCurrentState(RideState.outForPickup);
-                                      }
-                                      Get.to(()=> const MapScreen());
-                                    }
-                                  }else{
-                                    Get.dialog(TripAcceptWarningDialogWidget(errorText: message));
-                                  }
-                                });
                               }else{
                                 Get.dialog(TripAcceptWarningDialogWidget(errorText: message));
                               }

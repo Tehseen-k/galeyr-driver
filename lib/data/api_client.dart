@@ -62,7 +62,7 @@ class ApiClient extends GetxService {
     }
   }
 
-  Future<Response> postData(String uri, dynamic body, {Map<String, String>? headers, int? timeout}) async {
+  Future<Response> postData(String uri, dynamic body, {Map<String, String>? headers}) async {
     try {
       if(kDebugMode) {
         log('====> API Call: $uri\nHeader: $_mainHeaders');
@@ -72,17 +72,10 @@ class ApiClient extends GetxService {
         Uri.parse(appBaseUrl+uri),
         body: jsonEncode(body),
         headers: headers ?? _mainHeaders,
-      ).timeout(Duration(seconds: timeout ?? timeoutInSeconds));
+      ).timeout(Duration(seconds: timeoutInSeconds));
       return handleResponse(response, uri);
     } catch (e) {
-      if(kDebugMode) {
-        log('====> API Error: $uri\n$e');
-      }
-      return Response(statusCode: 1, statusText: noInternetMessage, body: {
-        'message': noInternetMessage,
-        'response_code': 'connection_failed',
-        'error': e.toString(),
-      });
+      return Response(statusCode: 1, statusText: noInternetMessage);
     }
   }
 
